@@ -1,6 +1,7 @@
 package com.demo.service.implement;
 
 import com.demo.dto.PostProductDto;
+import com.demo.dto.PutProductDto;
 import com.demo.entities.Product;
 import com.demo.mapper.ProductMapper;
 import com.demo.reposistory.ProductRepository;
@@ -46,16 +47,16 @@ public class ProductServiceImplement implements ProductService {
     }
 
     @Override
-    public Product update(PostProductDto productDto, Long productId) {
+    public Product update(PutProductDto putProductDto, Long productId) {
         productRepository.findById(productId)
                 .stream()
                 .findFirst()
                 .map(
                         product -> {
                             product.setProductId(productId);
-                            product.setName(productDto.name());
-                            product.setPrice(productDto.price());
-                            product.setDescription(productDto.description());
+                            product.setName(putProductDto.name());
+                            product.setPrice(putProductDto.price());
+                            product.setDescription(putProductDto.description());
                             return productRepository.save(product);
                         }
                 ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));

@@ -1,6 +1,7 @@
 package com.demo.rest.controller;
 
 import com.demo.dto.PostProductDto;
+import com.demo.dto.PutProductDto;
 import com.demo.entities.Product;
 import com.demo.service.implement.ProductServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class ProductRestController {
     }
 
     @PutMapping("/products/{productId}")
-    public ResponseEntity<Product> update(@RequestBody PostProductDto productDto,@PathVariable Long productId) {
-        return new ResponseEntity<>(productServiceImplement.update(productDto,productId), HttpStatus.OK);
+    public ResponseEntity<Product> update(@RequestBody PutProductDto putProductDto, @PathVariable Long productId) {
+        return new ResponseEntity<>(productServiceImplement.update(putProductDto,productId), HttpStatus.OK);
     }
 
     @DeleteMapping("/products/{productId}")
